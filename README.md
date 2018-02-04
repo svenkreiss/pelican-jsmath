@@ -16,7 +16,7 @@ git submodule add https://github.com/svenkreiss/pelican-jsmath
 Add `pelican-jsmath` to your list of plugins in `pelican-conf.py`.
 
 
-## Use with KaTeX
+## Use with [KaTeX](https://github.com/Khan/KaTeX)
 
 In the `base.html` template of your theme, add
 
