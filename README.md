@@ -30,6 +30,8 @@ In the `base.html` template of your theme, add
 to the `<head>` and at the bottom, add
 `<script>renderMathInElement(document.body);</script>`.
 
+Sample: ![KaTeX sample](sample.png)
+
 
 ## Attribution
 
