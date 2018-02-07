@@ -7,14 +7,12 @@ It adds an extension to Markdown and configures the Restructured Text
 parser such that it does not break embedded math of the form `$E=mc^2$` or
 `$$E=mc^2$$` and wraps these in `<div class="math">` or `<span class="math">`.
 
-Add `pelican-jsmath` to your `pelican-plugins` directory with:
+Install with `pip install pelican-jsmath`. In your `pelican-conf.py`, add
 
-```sh
-git submodule add https://github.com/svenkreiss/pelican-jsmath
+```py
+import pelican_jsmath  # not the underscore here, not dash
+PLUGINS = [..., pelican_jsmath, ...]  # add without quotes
 ```
-
-Add `pelican-jsmath` to your list of plugins in `pelican-conf.py`.
-
 
 ## Use with [KaTeX](https://github.com/Khan/KaTeX)
 
