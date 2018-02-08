@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:3.6-stretch-node-browsers
+      - image: circleci/python:3.6.1
     steps:
       - checkout
       - run:
@@ -11,7 +11,7 @@ jobs:
           pelican content -s pelicanconf.py
   test:
     docker:
-      - image: circleci/python:3.6-stretch-node-browsers
+      - image: circleci/python:3.6.1
     steps:
       - checkout
       - run: html5validator --root test/example_site/output
