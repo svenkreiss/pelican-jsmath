@@ -1,5 +1,7 @@
 # pelican-jsmath
 
+[![CircleCI](https://circleci.com/gh/svenkreiss/pelican-jsmath/tree/master.svg?style=svg)](https://circleci.com/gh/svenkreiss/pelican-jsmath/tree/master)
+
 This plugin passes math through the parsers without modifications so that a
 JavaScript renderer can process it.
 
