@@ -2,7 +2,7 @@ version: 2
 jobs:
   test-3.6:
     docker:
-      - image: python:3.6-jessie
+      - image: python:3.6
     steps:
       - run:
           name: install Java
