@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:3.6.1
+      - image: python:3.6.1
     steps:
       - checkout
       - run:
@@ -14,7 +14,7 @@ jobs:
           command: pelican content -s pelicanconf.py
   test:
     docker:
-      - image: circleci/python:3.6.1
+      - image: python:3.6.1
     steps:
       - checkout
       - run:
