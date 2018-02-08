@@ -10,4 +10,12 @@ setup(
     author_email='me@svenkreiss.com',
     license='AGPL-3.0',
     packages=['pelican_jsmath'],
+
+    extras_require={
+        'test': [
+            'pelican',
+            'markdown',
+            'html5validator',
+        ]
+    }
 )

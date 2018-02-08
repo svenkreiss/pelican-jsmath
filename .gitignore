@@ -1,3 +1,6 @@
+# Pelican
+test/example_site/output
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

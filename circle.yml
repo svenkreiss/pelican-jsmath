@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/python:3.6-stretch-node-browsers
+    steps:
+      - checkout
+      - run:
+        command: |
+          cd test/example_site
+          pelican content -s pelicanconf.py
+  test:
+    docker:
+      - image: circleci/python:3.6-stretch-node-browsers
+    steps:
+      - checkout
+      - run: html5validator --root test/example_site/output
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+      - test:
+        - requires:
+          - build
