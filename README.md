@@ -9,8 +9,8 @@ parser such that it does not break embedded math of the form `$E=mc^2$` or
 
 ## Install
 
-Install with `pip install pelican-jsmath`. In your `pelican-conf.py`, add
-`'pelican_jsmath'` to your `PLUGINS`.
+Install with `pip install pelican-jsmath` (with a dash). In your
+`pelican-conf.py`, add `'pelican_jsmath'` (with an underscore) to your `PLUGINS`.
 
 ## Use with [KaTeX](https://github.com/Khan/KaTeX)
 
