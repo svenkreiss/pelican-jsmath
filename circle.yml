@@ -1,8 +1,8 @@
 version: 2
 jobs:
-  build:
+  test-3.6:
     docker:
-      - image: python:3.6.1
+      - image: python:3.6
     steps:
       - checkout
       - run:
@@ -12,11 +12,21 @@ jobs:
           name: generate html
           working_directory: test/example_site
           command: pelican content -s pelicanconf.py
-  test:
+      - run:
+          name: validate html
+          command: html5validator --root test/example_site/output
+  test-2.7:
     docker:
-      - image: python:3.6.1
+      - image: python:2.7
     steps:
       - checkout
+      - run:
+          name: install
+          command: pip install '.[test]'
+      - run:
+          name: generate html
+          working_directory: test/example_site
+          command: pelican content -s pelicanconf.py
       - run:
           name: validate html
           command: html5validator --root test/example_site/output
@@ -24,7 +34,5 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
-      - test:
-          requires:
-            - build
+      - test-2.7
+      - test-3.6
