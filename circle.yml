@@ -5,8 +5,7 @@ jobs:
       - image: circleci/python:3.6.1
     steps:
       - checkout
-      - run:
-        command: |
+      - run: |
           cd test/example_site
           pelican content -s pelicanconf.py
   test:
