@@ -18,10 +18,6 @@ jobs:
       - run:
           name: validate html
           command: html5validator --root test/example_site/output
-  test-3.5:
-    <<: *test-template
-    docker:
-      - image: python:3.5-stretch
   test-2.7:
     <<: *test-template
     docker:
