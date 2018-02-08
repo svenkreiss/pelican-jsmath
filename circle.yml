@@ -10,7 +10,7 @@ jobs:
           command: pip install '.[test]'
       - run:
           name: install Java
-          command: sudo apt-get install -y default-jdk
+          command: apt-get install -y default-jdk
       - run:
           name: generate html
           working_directory: test/example_site
