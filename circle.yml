@@ -1,6 +1,6 @@
 version: 2
 jobs:
-  test-3.6:
+  test-3.6: &test-template
     docker:
       - image: python:3.6-stretch
     steps:
@@ -18,8 +18,17 @@ jobs:
       - run:
           name: validate html
           command: html5validator --root test/example_site/output
-workflows:
+  test-3.5:
+    <<: *test-template
+    docker:
+      - image: python:3.5-stretch
+  test-2.7:
+    <<: *test-template
+    docker:
+      - image: python:2.7-stretch
   version: 2
   build_and_test:
     jobs:
+      - test-2.7
+      - test-3.5
       - test-3.6
