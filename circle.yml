@@ -6,6 +6,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: install
+          command: pip install '.[test]'
+      - run:
           name: generate html
           working_directory: test/example_site
           command: pelican content -s pelicanconf.py
