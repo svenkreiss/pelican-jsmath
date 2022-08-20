@@ -1,6 +1,6 @@
 import markdown
 
-from markdown.util import etree
+import xml.etree.ElementTree as etree 
 from markdown.util import AtomicString
 
 
@@ -13,7 +13,7 @@ class JsMathPattern(markdown.inlinepatterns.Pattern):
         self.tag = tag
 
     def handleMatch(self, m):
-        node = markdown.util.etree.Element(self.tag)
+        node = etree.Element(self.tag)
         node.set('class', self.math_tag_class)
 
         prefix = '\\(' if m.group('prefix') == '$' else m.group('prefix')
@@ -40,7 +40,7 @@ class JsMathCorrectDisplayMath(markdown.treeprocessors.Treeprocessor):
         current_idx = 0
 
         for idx in div_math:
-            el = markdown.util.etree.Element('p')
+            el = etree.Element('p')
             el.text = text
             el.extend(children[current_idx:idx])
 
@@ -55,7 +55,7 @@ class JsMathCorrectDisplayMath(markdown.treeprocessors.Treeprocessor):
             insert_idx += 1
             current_idx = idx+1
 
-        el = markdown.util.etree.Element('p')
+        el = etree.Element('p')
         el.text = text
         el.extend(children[current_idx:])
 
@@ -90,12 +90,12 @@ class JsMathExtension(markdown.Extension):
     def __init__(self):
         super(JsMathExtension, self).__init__()
 
-    def extendMarkdown(self, md, md_globals):
+    def extendMarkdown(self, md):
         inline_regex = r'(?P<prefix>\$)(?P<math>.+?)(?P<suffix>(?<!\s)\2)'
         display_regex = r'(?P<prefix>\$\$|\\begin\{(.+?)\})(?P<math>.+?)(?P<suffix>\2|\\end\{\3\})'
 
-        md.inlinePatterns.add('jsmath_displayed', JsMathPattern('div', display_regex), '<escape')
-        md.inlinePatterns.add('jsmath_inlined', JsMathPattern('span', inline_regex), '<escape')
+        md.inlinePatterns.register(name='jsmath_displayed', item=JsMathPattern('div', display_regex), priority=19)
+        md.inlinePatterns.register(name='jsmath_inlined', item=JsMathPattern('span', inline_regex), priority=19)
 
         # Correct the invalid HTML that results from the displayed math (<div> tag within a <p> tag)
-        md.treeprocessors.add('jsmath_correctdisplayedmath', JsMathCorrectDisplayMath(), '>inline')
+        md.treeprocessors.register(name='jsmath_correctdisplayedmath', item=JsMathCorrectDisplayMath(), priority=21)
